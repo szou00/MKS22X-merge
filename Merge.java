@@ -18,13 +18,20 @@ public class Merge {
     mergesort(temp,data,i,j/2);
     mergesort(temp,data,j/2+1,j);
     int ic = 0; int jc = j/2+1;int x =0;
-    while (ic != j/2+1 || jc != j+1) {
+    System.out.println("first array length: " + (j/2+1) + " second: " + (j+1));
+    while (ic != j/2+1) {
+      System.out.println("ic: " +  ic + " jc: " + jc);
+      System.out.println(ic == j/2+1);
       if (data[ic] >= data[jc]) {
+        System.out.println("x: " + x);
+        System.out.println("index of first array: " + ic);
         temp[x] = data[ic];
         ic+=1;
         x+=1;
       }
-      if (data[jc] > data[ic]) {
+      else {
+        System.out.println("x: " + x);
+        System.out.println("index of second array: " + ic);
         temp[x] = data[jc];
         jc+=1;
         x+=1;
