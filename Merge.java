@@ -1,8 +1,11 @@
+import java.util.Arrays;
+
 public class Merge {
 
   /*sort the array from least to greatest value. This is a wrapper function*/
   public static void mergesort(int[]data){
-    mergesort(data, 0, data.length-1);
+    int[] temp = new int[data.length];
+    mergesort(data, temp, 0, data.length-1);
   }
 
   //recursive helper function
@@ -39,6 +42,13 @@ public class Merge {
         x+=1;
       }
     }
+  }
+
+  public static void main(String args[]) {
+    int[] data1 = {38,27,43,3,9,82,10};
+
+    mergesort(data1);
+    System.out.println(Arrays.toString(data1));
   }
 
 }
