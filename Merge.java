@@ -13,11 +13,6 @@ public class Merge {
     if (lo >= hi) {
       // System.out.println("returned");
       return;
-      // if (data[lo] > data[hi]) {
-      //   int temp = data[hi];
-      //   data[hi] = data[lo];
-      //   data[lo] = temp;
-      // }
     }
 
     //initializing left array
@@ -38,10 +33,10 @@ public class Merge {
     int b = 0; int e = 0; //keeps track of the indexes in both arrays
     int x = 0;
     int[] newary = new int[data.length];
-    System.out.println("b: " + b + " e: " + e);
+    // System.out.println("b: " + b + " e: " + e);
     while (b!=beg.length && e != end.length) {
       if (beg[b] <= end[e]) {
-        System.out.println(beg[b] + " " + end[e]);
+        // System.out.println(beg[b] + " " + end[e]);
         newary[x] = beg[b];
         b+=1;
         x+=1;
@@ -60,6 +55,8 @@ public class Merge {
       newary[x] = end[e];
       e+=1;
     }
+    System.out.println(Arrays.toString(beg));
+    System.out.println(Arrays.toString(end));
     System.out.println(Arrays.toString(newary));
   }
 
