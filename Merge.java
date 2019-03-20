@@ -40,7 +40,7 @@ public class Merge {
   public static void merge(int[] data, int[] beg, int[] end) {
     int b = 0; int e = 0; //keeps track of the indexes in both arrays
     int x = 0;
-    data = new int[data.length];
+    // data = new int[data.length];
     // System.out.println("b: " + b + " e: " + e);
     while (b!=beg.length && e != end.length) {
       if (beg[b] <= end[e]) {
