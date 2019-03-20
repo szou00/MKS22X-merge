@@ -5,55 +5,56 @@ public class Merge {
   /*sort the array from least to greatest value. This is a wrapper function*/
   public static void mergesort(int[]data){
     int[] temp = new int[data.length];
-    mergesort(data, 0, data.length-1);
+    mergesort(data, temp, 0, data.length-1);
   }
 
   //recursive helper function
-  public static void mergesort(int[] data, int lo, int hi) {
+  public static void mergesort(int[] data, int[]temp, int lo, int hi) {
     if (lo >= hi) {
       // System.out.println("returned");
       return;
     }
 
-    //initializing left array
-    int[] beg = new int[data.length-data.length/2];
-    for (int i = 0; i < beg.length; i++) {
-      beg[i] = data[i];
+    //middle value that splits right and left
+    int mid = data.length-data.length/2;
+
+    //initializing left side of the array
+    for (int i = 0; i < mid; i++) {
+      temp[i] = data[i];
     }
 
-    //initializing right array
-    int[] end = new int[data.length/2];
-    for (int i = 0; i<end.length;i++) {
-      end[i] = data[i+(data.length-data.length/2)];
+    //initializing right side of the array
+    for (int i = mid; i<data.length;i++) {
+      temp[i] = data[i+mid];
     }
 
-    mergesort(beg,0,beg.length-1);
-    mergesort(end,beg.length,data.length-1);
-    merge(data,beg,end);
+    mergesort(temp,data,0,mid-1);
+    mergesort(temp,data,mid,data.length-1);
+    merge(temp,data,mid);
   }
 
-  public static void merge(int[] data, int[] beg, int[] end) {
-    int b = 0; int e = 0; //keeps track of the indexes in both arrays
+  public static void merge(int[] data, int[] temp,int mid) {
+    int b = 0; int e = mid; //keeps track of the indexes in both arrays
     int x = 0;
-    while (b!=beg.length && e != end.length) {
-      if (beg[b] <= end[e]) {
-        data[x] = beg[b];
+    while (b!=mid && e != data.length) {
+      if (data[b] <= data[e]) {
+        temp[x] = data[b];
         b+=1;
         x+=1;
       }
       else {
-        data[x] = end[e];
+        temp[x] = data[e];
         e+=1;
         x+=1;
       }
     }
-    while (b!= beg.length) {
-      data[x] = beg[b];
+    while (b!= mid) {
+      temp[x] = data[b];
       b+=1;
       x+=1;
       }
-    while (e!= end.length) {
-      data[x] = end[e];
+    while (e!= data.length) {
+      temp[x] = data[e];
       e+=1;
       x+=1;
     }
