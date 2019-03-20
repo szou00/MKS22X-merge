@@ -11,14 +11,45 @@ public class Merge {
   //recursive helper function
   public static void mergesort(int[] data, int lo, int hi) {
     if (lo >= hi) {
-      if (data[lo] > data[hi]) {
-        int temp = data[hi];
-        data[hi] = data[lo];
-        data[lo] = temp;
+      System.out.println("returned");
+      return;
+      // if (data[lo] > data[hi]) {
+      //   int temp = data[hi];
+      //   data[hi] = data[lo];
+      //   data[lo] = temp;
+      // }
+    }
+
+    //initializing left array
+    int[] beg = new int[data.length/2];
+    for (int i = 0; i < beg.length; i++) {
+      beg[i] = data[i];
+    }
+
+    //initializing right array
+    int[] end = new int[data.length-data.length/2];
+    for (int i = 0; i<end.length;i++) {
+      end[i] = data[i+data.length/2];
+    }
+
+    mergesort(beg,0,beg.length-1);
+    mergesort(end,beg.length,data.length-1);
+    
+    int b = lo; int e = beg.length; //keeps track of the indexes in both arrays
+    int x = 0;
+    int[] newary = new int[data.length];
+    while (b!=beg.length && e != end.length) {
+      if (beg[b] >= end[e]) {
+        newary[x] = beg[b];
+        b+=1;
+        x+=1;
+      }
+      else {
+        newary[x] = end[e];
+        e+=1;
+        x+=1;
       }
     }
-    int[] beg = new int[data.length/2];
-    int[] end = new int[data.length-data.length/2];
   }
     // if (i>=j) {
     //   return;
@@ -59,7 +90,6 @@ public class Merge {
     //     x+=1;
     //   }
     // }
-  }
 
   public static void main(String args[]) {
     int[] data1 = {38,27,43,3,9,82,10};
