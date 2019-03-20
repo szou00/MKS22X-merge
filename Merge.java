@@ -27,23 +27,16 @@ public class Merge {
       end[i] = data[i+(data.length-data.length/2)];
     }
 
-    // System.out.print("beg: ");
-    // System.out.println(Arrays.toString(beg));
-    // System.out.print("end: ");
-    // System.out.println(Arrays.toString(end));
     mergesort(beg,0,beg.length-1);
     mergesort(end,beg.length,data.length-1);
-
     merge(data,beg,end);
   }
 
   public static void merge(int[] data, int[] beg, int[] end) {
     int b = 0; int e = 0; //keeps track of the indexes in both arrays
     int x = 0;
-    // System.out.println("b: " + b + " e: " + e);
     while (b!=beg.length && e != end.length) {
       if (beg[b] <= end[e]) {
-        // System.out.println(beg[b] + " " + end[e]);
         data[x] = beg[b];
         b+=1;
         x+=1;
@@ -64,9 +57,6 @@ public class Merge {
       e+=1;
       x+=1;
     }
-    // System.out.println(Arrays.toString(beg));
-    // System.out.println(Arrays.toString(end));
-    // System.out.println(Arrays.toString(data));
   }
 
   public static void main(String[]args){
