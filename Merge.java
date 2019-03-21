@@ -5,14 +5,14 @@ public class Merge {
 
   public static void insertionsort(int[] data, int lo,int hi) {
     if (lo >= hi) {
-      return;
+      return; //base case
     }
     int current = 0;
-    for (int i = 0; i < data.length; i++) {
+    for (int i = 0; i < data.length; i++) { //goes thru the list
       current = data[i];
-      //compound boolean!
+      //compound boolean
       int x = i - 1;
-      while (x > -1 && data[x] > current) {
+      while (x > -1 && data[x] > current) { //finds the index that value should be
         data[x + 1] = data[x];
         data[x] = current;
         x -= 1;
@@ -22,71 +22,62 @@ public class Merge {
 
   /*sort the array from least to greatest value. This is a wrapper function*/
   public static void mergesort(int[]data){
-    int[] temp = new int[data.length];
+    // int[] temp = new int[data.length]; //initializes a temp ary
     mergesort(data, 0, data.length-1);
   }
 
   //recursive helper function
   public static void mergesort(int[] data, int lo, int hi) {
     if (hi - lo <= 50) {
-      insertionsort(data,lo,hi);
-      // System.out.println("returned");
+      insertionsort(data,lo,hi); //calls insertion
       return;
     }
 
     //initializing left array
-    int[] beg = new int[data.length-data.length/2];
+    int[] beg = new int[data.length-data.length/2]; //gets half the length
     for (int i = 0; i < beg.length; i++) {
-      beg[i] = data[i];
+      beg[i] = data[i]; //copies over values
     }
 
     //initializing right array
-    int[] end = new int[data.length/2];
-    for (int i = 0; i<end.length;i++) {
+    int[] end = new int[data.length/2]; //gets the rest of the length
+    for (int i = 0; i<end.length;i++) { //copies over the values
       end[i] = data[i+(data.length-data.length/2)];
     }
 
-    // System.out.print("beg: ");
-    // System.out.println(Arrays.toString(beg));
-    // System.out.print("end: ");
-    // System.out.println(Arrays.toString(end));
-    mergesort(beg,0,beg.length-1);
-    mergesort(end,beg.length,data.length-1);
+    mergesort(beg,0,beg.length-1); //calls function on left array
+    mergesort(end,beg.length,data.length-1); //calls function on right array
 
-    merge(data,beg,end);
+    merge(data,beg,end); //calls function to merge it
   }
 
   public static void merge(int[] data, int[] beg, int[] end) {
     int b = 0; int e = 0; //keeps track of the indexes in both arrays
     int x = 0;
-    // data = new int[data.length];
-    // System.out.println("b: " + b + " e: " + e);
-    while (b!=beg.length && e != end.length) {
-      if (beg[b] <= end[e]) {
-        // System.out.println(beg[b] + " " + end[e]);
-        data[x] = beg[b];
-        b+=1;
+
+    while (b!=beg.length && e != end.length) { //while it doesn't reach the end
+    //of either array
+      if (beg[b] <= end[e]) { //if the value in the first ary is less
+        data[x] = beg[b]; //data gets that value first
+        b+=1; //the corresponding indexes increment
         x+=1;
       }
       else {
-        data[x] = end[e];
-        e+=1;
+        data[x] = end[e]; //otherwise data gets the other val
+        e+=1; //corresponding indexes increment
         x+=1;
       }
     }
-    while (b!= beg.length) {
-      data[x] = beg[b];
-      b+=1;
+    while (b!= beg.length) { //if the beg ary still has values left
+      data[x] = beg[b]; //data copies the rest of the values over
+      b+=1; //corresponding vals increment
       x+=1;
       }
-    while (e!= end.length) {
-      data[x] = end[e];
+    while (e!= end.length) { //if the end ary still has values left
+      data[x] = end[e]; //data copies over the rest of the values
       e+=1;
-      x+=1;
+      x+=1; //corresponding vals increment 
     }
-    // System.out.println(Arrays.toString(beg));
-    // System.out.println(Arrays.toString(end));
-    // System.out.println(Arrays.toString(data));
   }
 
   public static void main(String[]args){
