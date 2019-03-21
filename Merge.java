@@ -1,6 +1,24 @@
 import java.util.Arrays;
+import java.util.Random;
 
 public class Merge {
+
+  public static void insertionsort(int[] data, int lo,int hi) {
+    if (lo >= hi) {
+      return;
+    }
+    int current = 0;
+    for (int i = 0; i < data.length; i++) {
+      current = data[i];
+      //compound boolean!
+      int x = i - 1;
+      while (x > -1 && data[x] > current) {
+        data[x + 1] = data[x];
+        data[x] = current;
+        x -= 1;
+      }
+    }
+  }
 
   /*sort the array from least to greatest value. This is a wrapper function*/
   public static void mergesort(int[]data){
@@ -10,7 +28,8 @@ public class Merge {
 
   //recursive helper function
   public static void mergesort(int[] data, int lo, int hi) {
-    if (lo >= hi) {
+    if (hi - lo <= 50) {
+      insertionsort(data,lo,hi);
       // System.out.println("returned");
       return;
     }
@@ -104,5 +123,46 @@ public class Merge {
     System.out.println();
   }
 }
+// int[] array = {5, 1, 12, -5, 16 }; // new int[10];
+//     Random randgen = new Random();
+//     for (int y = 0; y < array.length; y++) {
+//       array[y] = randgen.nextInt(100);
+//     }
+//     for (int z = 0; z < array.length; z++) {
+//       if (z == 0) {
+//         System.out.print("Your unsorted array : [" + array[z] + ", ");
+//       }
+//       else {
+//         if (z == array.length - 1) {
+//           System.out.print(array[z] + "]" + "\n");
+//         }
+//         else {
+//           System.out.print(array[z] + ", ");
+//         }
+//       }
+//     }
+//
+//     insertionsort(array,0,4);
+//     for (int z = 0; z < array.length; z++) {
+//       if (z == 0) {
+//         System.out.print("Your sorted array : [" + array[z] + ", ");
+//       }
+//       else {
+//         if (z == array.length - 1) {
+//           System.out.print(array[z] + "]" + "\n");
+//         }
+//         else {
+//           System.out.print(array[z] + ", ");
+//         }
+//       }
+//     }
+//   }
+
+
+// int[] data1 = {38,27,43,3,9,82,10};
+//
+//     mergesort(data1);
+//     System.out.println(Arrays.toString(data1));
+//   }
 
 }
